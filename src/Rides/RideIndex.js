@@ -4,6 +4,7 @@ import RideTable from '../Components/RideTable';
 import RideEdit from '../Components/RideEdit';
 import { Container, Row, Col } from 'reactstrap';
 import Radium from 'radium';
+import APIURL from '../helpers/environment';
 
 var styles = {
   
@@ -32,7 +33,7 @@ class RideIndex extends Component{
     }
 
     fetchrides = () =>{
-        fetch("http://localhost:3000/waittimes", {
+        fetch(`${APIURL}/waittimes`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type' : 'application/json',
@@ -46,7 +47,7 @@ class RideIndex extends Component{
     }
 
     rideDelete = (event) => {
-        fetch(`http://localhost:3000/waittimes/${event.target.id}`, {
+        fetch(`${APIURL}/waittimes/${event.target.id}`, {
       method: 'DELETE',
       body: JSON.stringify({ waittime: { id: event.target.id } }),
       headers: new Headers({
@@ -58,7 +59,7 @@ class RideIndex extends Component{
   }
 
     rideUpdate =(event, waittime) => {
-        fetch(`http://localhost:3000/waittimes/edit/${waittime.id}`, {
+        fetch(`${APIURL}/waittimes/edit/${waittime.id}`, {
             method: 'PUT',
             body: JSON.stringify({ waittime: waittime}),
             headers: new Headers({

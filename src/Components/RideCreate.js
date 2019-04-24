@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Radium from 'radium';
+import APIURL from '../helpers/environment';
 
 var styles = {
   
@@ -40,7 +41,7 @@ class RideCreate extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/waittimes`, {
+        fetch(`${APIURL}/waittimes`, {
             method: 'POST',
             body: JSON.stringify({ waittime: this.state }),
             headers: new Headers({

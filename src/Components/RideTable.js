@@ -3,17 +3,10 @@ import { Table, Button } from 'reactstrap';
 import Radium from 'radium';
 
 var styles = {
-  
-    usertable: {
-        fontSize: '25px',
-        fontFamily:'Shadows Into Light, cursive',
-        fontWeight: 'bold',
-        backgroundColor: 'ghostwhite'
-    },
 
     h3: {
-        fontSize: '55px',
-        fontFamily:'Shadows Into Light, cursive',
+        fontSize: '35px',
+        fontFamily:'Roboto',
         fontWeight: 'bold',
         textAlign: 'center',
         backgroundColor: '#D4F4DD'
@@ -23,14 +16,14 @@ var styles = {
         fontFamily:'Shadows Into Light, cursive',
         fontWeight: 'bold',
         textAlign: 'center',
-        backgroundColor: 'D4F4DD'
+        backgroundColor: 'ghostwhite'
     },
     thead: {
         fontSize: '35px',
         fontFamily:'Roboto',
         fontWeight: 'bold',
         textAlign: 'center',
-        backgroundColor: 'ghostwhite'
+        backgroundColor: 'cyan'
     },
   };
 

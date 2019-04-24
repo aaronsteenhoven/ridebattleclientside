@@ -1,28 +1,79 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+// import Header from './Home/Header';
+import Auth from './Auth/Auth';
+// import Landing from './Home/Landing';
+import SiteBar from './Home/SiteBar';
+import Main from './Home/Main';
+// import Footer from './Home/Footer';
+import {
+  BrowserRouter as Router
+} from 'react-router-dom';
+import {
+  Route,
+  Switch
+} from 'react-router-dom';
+
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+  constructor() {
+    super();
+    this.state = {
+      sessionToken: ''
+    }
   }
-}
 
-export default App;
+  viewConductor = () => {
+    if (this.state.sessionToken === localStorage.getItem('token')) {
+      return (
+        <Switch>
+          <Route>
+            <Main sessionToken={this.state.sessionToken} />
+          </Route>
+        </Switch>
+      )
+    } else {
+      return (
+      <Route>
+        <Auth setToken = {this.setSessionState}/>
+      </Route>
+      )
+    }  
+  }
+
+   
+
+    setSessionState = (token) => {
+      localStorage.setItem('token', token);
+      this.setState({
+        sessionToken: token
+      });
+    }
+
+    logout = () => {
+      this.setState({
+        sessionToken: ''
+      })
+      localStorage.clear();
+      alert("You have been logged out")
+
+    }
+
+
+
+    render() {
+      return (
+        <div>
+        <Router>
+          <div> 
+            {/* <SiteBar logout={this.logout} /> */}
+            {this.viewConductor()}
+          </div>
+        </Router>
+        </div>
+      );
+    }
+  }
+
+
+  export default App;

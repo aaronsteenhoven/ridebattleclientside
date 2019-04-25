@@ -1,21 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 import RideIndex from '../Rides/RideIndex';
-import { Jumbotron, Container, Button, Card, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody } from 'reactstrap';
+import { Jumbotron, Container, Button, Card, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Col, Row } from 'reactstrap';
 import disneyLogo from '../assets/Disneylog.png'
 import vsLogo from '../assets/vslogo.jpg'
 import universalLogo from '../assets/Universallogo.jpg'
 import headerlogo from '../assets/EditedHeader.png';
 import authpicture from '../assets/Telegram.jpg';
+import ridepicture from '../assets/Metallic Toad.jpg';
 // import ToggleUser from '../Components/ToggleUser';
 import dateTime from '../Components/DateTime';
 import Radium from 'radium';
+import KingdomRides from '../Components/KingdomRides';
+import UniversalRides from '../Components/UniversalRides';
+
+
 
 var styles = {
+
+  body: {
+    backgroundImage: `url(${ridepicture})`
+    // backgroundColor:"azure"
+  },
   headerlogo: {
     textAlign:'center',
     size: '200%',
     backgroundPosition: 'center',
-    marginTop: '20px',
+    // marginTop: '20px',
   },
 
   card2: {
@@ -24,18 +34,16 @@ var styles = {
   },
 
   card3: {
-    marginTop: '28px',
+    marginTop: '60px',
     
   },
 
   cardbutton: {
     backgroundPosition: 'center', 
-    textAlign:'center',  
+    textAlign:'center', 
+    marginTop: '33px', 
   },
 
-  cardgroup1: {
-    padding: '-10px'
-  },
 
   cardtext: {
     textAlign:'center',  
@@ -44,60 +52,146 @@ var styles = {
     color:'yellowgreen'
   },
 
+
     cards: {
       backgroundColor: '#0088FF'
     },
+
+    p: { 
+      fontFamily:'Oxygen',
+      fontSize:'40px',
+      color:'black',
+      borderColor: 'black',
+      borderWidth: '3px',
+      borderStyle: 'solid',
+      backgroundColor: 'cyan'
+    },
+
+    usercreate: {
+      backgroundImage: `url(${ridepicture})`
+    },
+  
 
     userstuff: {
       fontSize: '45px',
       fontFamily:'Droid Sans',
       fontWeight: 'bold',
       textAlign: 'center',
-      backgroundImage: `url(${authpicture})`
+      
 
       
     }
 };
 
-const Main = (props) => {
-    return (
+class Main extends Component {
+  constructor(props) {
+      super(props)
+      this.state = {
+        kingdomRides: [],
+        universalRides: [],
+        showrides: false
+      }};
+
+
+        componentDidMount(){
+          this.fetchKingdom();
+          this.fetchUniversal();
+          console.log(this.state.kingdomRides)
+        }
+
+        fetchKingdom= (props) => {
+          fetch('http://localhost:7000/parks/magicKingdom', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type' : 'application/json',
+                'Authorization' : this.props.token
+            })
+        })
+            .then((res) => res.json())
+            .then((logData) => {
+                this.setState({kingdomRides: logData})
+            })
+        }
+
+        fetchUniversal= (props) => {
+          fetch('http://localhost:7000/parks/universalStudios', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type' : 'application/json',
+                'Authorization' : this.props.token
+            })
+        })
+            .then((res) => res.json())
+            .then((logData) => {
+                return this.setState({universalRides: logData})
+            })
+        }
+
+          toggle= () => {
+
+            this.state.showrides == false ?
+            this.setState({
+            showrides: true
+            }) : this.setState({showrides: false})}
+
+      render() {           
+
+      return (
       
-      
-        <div>
-       
+        <div style={styles.body}>
           <div style={styles.headerlogo} className="headerlogo">
           <Jumbotron fluid>
         <Container fluid>
-          {/* <h1 className="display-3">Fluid jumbotron</h1> */}
           <img  src={headerlogo} ></img>
-          {/* <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> */}
         </Container>
       </Jumbotron>
         </div>
       <CardGroup style={styles.cardgroup1}>
       <Card>
         <CardImg className ="disneyRides" top width="100%" padding= "2px"src={disneyLogo} alt="Card image cap" />
-        {/* <CardTitle> SPACE MOUNTAIN </CardTitle> */}
         <CardText style={styles.cardtext} >Wait Time as of {dateTime}</CardText>
       </Card>
       <Card>
       <CardImg style={styles.card2}top width="100%" className ="vsLogo"src= {vsLogo} alt="Card image cap" />
-        <CardText style={styles.cardtext} > <strong><Button style= {styles.cardbutton} className="fetch" color="primary" size="lg">Pull Current Wait Times</Button>{' '}</strong> </CardText>
+        
+          <Button style= {styles.cardbutton} onClick={this.toggle} className="fetch" color="primary" size="lg">Pull Current Wait Times</Button>{' '} 
+        
         </Card>
       <Card>
       <CardImg style={styles.card3} top width="100%" className ="universalLogo" src= {universalLogo} alt="Card image cap" />
-        {/* <CardTitle> Universal Studios Ride </CardTitle> */}
         <CardText style={styles.cardtext} >Wait Time as of {dateTime}</CardText>
       </Card>
       
     </CardGroup>
+    {this.state.showrides == true ? 
+
+    <Container>
+        <Row>
+          <Col sm='6'>
+            <KingdomRides  rides = {this.state.kingdomRides} />
+          </Col>
+
+          <Col sm='6'>
+            <UniversalRides  rides = {this.state.universalRides} />
+          </Col>
+        </Row>
+        
+    </Container> 
+    : null }
+         
+
+          <div>
+            <p style={styles.p}>Our data analysts are always looking to improve our user experience. If the wait times that we are providing don't match up, please let us know below!</p>
+          </div>
           <div style= {styles.usercreate} className="rideindex">
-            <RideIndex style= {styles.usercreate} token={props.sessionToken} />
+            <RideIndex style= {styles.usercreate} token={this.props.sessionToken} />
           </div>
             {/* <ToggleUser/> */}
             {/* <Button onClick = {this.props.clickLogout}> Logout </Button>  */}
       </div>
     )
+}
+
 }
 
 export default Radium(Main);

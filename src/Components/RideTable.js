@@ -6,10 +6,10 @@ var styles = {
 
     h3: {
         fontSize: '35px',
-        fontFamily:'Roboto',
+        fontFamily:'Permanent Marker, cursive',
         fontWeight: 'bold',
         textAlign: 'center',
-        backgroundColor: '#D4F4DD'
+        backgroundColor: 'lightgray'
     },
     tbody: {
         fontSize: '35px',
@@ -25,12 +25,20 @@ var styles = {
         textAlign: 'center',
         backgroundColor: 'cyan'
     },
+
+    // td: {
+    //     fontSize: '105px',
+    //     fontFamily:'Permanent Marker, cursive',
+    //     fontWeight: 'bold',
+    //     // textAlign: 'center',
+    //     // backgroundColor: 'cyan'
+    // },
   };
 
 const RideTable = (props) => { 
     return (
         <div>
-            <h3 style={styles.h3} important>Ride Wait Time History</h3>
+            <h4 style={styles.h3} important>Ride Wait Time History</h4>
             <hr />
             <Table hover>
                 <thead style={styles.thead}>
@@ -52,7 +60,7 @@ const RideTable = (props) => {
                 <td>{ride.ridename}</td>
                 <td>{ride.postedwait}</td>
                 <td>{ride.actualwait}</td>
-                <td>
+                <td style={styles.td}>
                     
                     <Button id={ride.id} onClick={props.delete} color="danger">Delete</Button>
                     <Button id={ride.id} onClick={e => props.update(e, ride)} color="warning">Update</Button>

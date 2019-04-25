@@ -45,7 +45,9 @@ import Radium from 'radium';
 
       auth: {
         textAlign: 'center',
-        backgroundImage: `url(${authpicture})`
+        fontFamily:'Raleway',
+        fontSize: '200%',
+        backgroundImage: `url(${authpicture})`,
 
       }
   };

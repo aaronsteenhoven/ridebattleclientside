@@ -12,6 +12,7 @@ import dateTime from '../Components/DateTime';
 import Radium from 'radium';
 import KingdomRides from '../Components/KingdomRides';
 import UniversalRides from '../Components/UniversalRides';
+import APIURL from '../helpers/environment';
 
 
 
@@ -100,7 +101,7 @@ class Main extends Component {
         }
 
         fetchKingdom= (props) => {
-          fetch('http://localhost:7000/parks/magicKingdom', {
+          fetch(`${APIURL}/parks/magicKingdom`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type' : 'application/json',
@@ -114,7 +115,7 @@ class Main extends Component {
         }
 
         fetchUniversal= (props) => {
-          fetch('http://localhost:7000/parks/universalStudios', {
+          fetch(`${APIURL}/parks/universalStudios`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type' : 'application/json',

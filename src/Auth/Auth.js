@@ -56,12 +56,11 @@ const Auth = (props) => {
     return (
         
     <div className="landingPage">
-        {/* <h1>Ride Battle</h1> */}
+        
         
         <div style={styles.jumbo}className="jumbo">
           <Jumbotron>
           <img  src={headerlogo} ></img>
-        {/* <h2 style={styles.h2} className="lead">DISNEY WORLD VS UNIVERSAL STUDIOS</h2> */}
         <hr  className="my-2" />
         <p>Welcome to the ultimate theme park battle site. We're all busy people. Time is a valuable asset. Need help deciding which park to visit today? We are the only resource online that allows you to compare Disney World Florida and Universal Studios Florida to access up to the minute wait times. Don't lose precious hours of your life because of poor planning.Get started today!</p>
         <CardGroup>

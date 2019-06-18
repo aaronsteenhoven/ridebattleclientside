@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import RideIndex from '../Rides/RideIndex';
 import { Jumbotron, Button, Card, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody } from 'reactstrap';
 import disneyLogo from '../assets/Disneylog.png'
 import vsLogo from '../assets/vslogo.jpg'
@@ -28,16 +26,8 @@ const Landing = (props) => {
         
         
         <h3 className="display-5">Signup for <strong>FREE</strong> below to create a user page where you can access site features.</h3>
-        {/* <p className="lead">
-          <Button color="primary">Get Started</Button> 
-        </p> */}
-      </Jumbotron>
-          {/* <RideIndex token= {props.sessionToken} /> */}
-          {/* <div className="disclaimer">
-            <h4>***Disclaimer***</h4>
-        <p> <i>We are still in the testing phase of our web app. Please check back often as we will continue to add more Disney and Universal content related to rides, shows, restaurants, character meets, and more!</i></p>
-            </div> */}
-      </div>
+            </Jumbotron>
+            </div>
   ) 
 }
 

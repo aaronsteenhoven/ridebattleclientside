@@ -26,13 +26,6 @@ var styles = {
         backgroundColor: 'cyan'
     },
 
-    // td: {
-    //     fontSize: '105px',
-    //     fontFamily:'Permanent Marker, cursive',
-    //     fontWeight: 'bold',
-    //     // textAlign: 'center',
-    //     // backgroundColor: 'cyan'
-    // },
   };
 
 const RideTable = (props) => { 

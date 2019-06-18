@@ -7,7 +7,6 @@ import universalLogo from '../assets/Universallogo.jpg'
 import headerlogo from '../assets/EditedHeader.png';
 import authpicture from '../assets/Telegram.jpg';
 import ridepicture from '../assets/Metallic Toad.jpg';
-// import ToggleUser from '../Components/ToggleUser';
 import dateTime from '../Components/DateTime';
 import Radium from 'radium';
 import KingdomRides from '../Components/KingdomRides';
@@ -20,13 +19,11 @@ var styles = {
 
   body: {
     backgroundImage: `url(${ridepicture})`
-    // backgroundColor:"azure"
-  },
+      },
   headerlogo: {
     textAlign:'center',
     size: '200%',
     backgroundPosition: 'center',
-    // marginTop: '20px',
   },
 
   card2: {

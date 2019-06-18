@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-// import Header from './Home/Header';
 import Auth from './Auth/Auth';
-// import Landing from './Home/Landing';
-import SiteBar from './Home/SiteBar';
+// import SiteBar from './Home/SiteBar';
 import Main from './Home/Main';
-// import Footer from './Home/Footer';
 import {
   BrowserRouter as Router
 } from 'react-router-dom';
